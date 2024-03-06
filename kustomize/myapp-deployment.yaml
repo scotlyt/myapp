@@ -22,7 +22,7 @@ spec:
         io.kompose.service: myapp
     spec:
       containers:
-        - image: 071774994151.dkr.ecr.us-west-2.amazonaws.com/myapp:internalbuilt 
+        - image: myapp
           name: myapp
           ports:
             - containerPort: 5000
