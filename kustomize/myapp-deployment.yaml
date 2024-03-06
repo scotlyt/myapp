@@ -4,6 +4,8 @@ metadata:
   annotations:
     kompose.cmd: kompose convert -f myapp-compose.yaml
     kompose.version: 1.32.0 (HEAD)
+    kustomize.toolkit.fluxcd.io/substitute: |
+      myapp: image-automation:myapp-repo:myapp-policy
   labels:
     io.kompose.service: myapp
   name: myapp
@@ -22,7 +24,7 @@ spec:
         io.kompose.service: myapp
     spec:
       containers:
-        - image: myapp
+        - image: 071774994151.dkr.ecr.us-west-2.amazonaws.com/myapp:internalbuilt 
           name: myapp
           ports:
             - containerPort: 5000
