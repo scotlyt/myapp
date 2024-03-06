@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f myapp-compose.yaml
+    kompose.version: 1.32.0 (HEAD)
+  labels:
+    io.kompose.service: myapp
+  name: myapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: myapp
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f myapp-compose.yaml
+        kompose.version: 1.32.0 (HEAD)
+      labels:
+        io.kompose.network/myapp-default: "true"
+        io.kompose.service: myapp
+    spec:
+      containers:
+        - image: myapp
+          name: myapp
+          ports:
+            - containerPort: 5000
+              hostPort: 8000
+              protocol: TCP
+      restartPolicy: Always
